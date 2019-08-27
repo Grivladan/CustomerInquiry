@@ -1,45 +1,46 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using CustomerInquiry.Api.ViewModels;
+using CustomerInquiry.Dal.Models;
+using CustomerInquiry.Logic.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CustomerInquiry.Controllers
+namespace CustomerInquiry.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ValuesController : ControllerBase
+    public class CustomerController : ControllerBase
     {
+        private readonly ICustomerService _customerService;
+        public CustomerController(ICustomerService customerService)
+        {
+            _customerService = customerService;
+        }
         // GET api/values
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public ActionResult<IEnumerable<Customer>> GetCustomers(Inquiry inquiry)
         {
-            return new string[] { "value1", "value2" };
-        }
+            try
+            {
+                if (inquiry == null || (inquiry.CustomerId == null && string.IsNullOrEmpty(inquiry.Email)))
+                {
+                    return BadRequest("No inquiry criteria");
+                }
 
-        // GET api/values/5
-        [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
-        {
-            return "value";
-        }
+                var customers = _customerService.GetCustomersInfo(inquiry.CustomerId, inquiry.Email);
 
-        // POST api/values
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
+                if (!customers.Any())
+                {
+                    return NotFound();
+                }
 
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+                return customers.ToList();
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using CustomerInquiry.Dal.Model;
-using CustomerInquiry.Dal.Models;
+﻿using CustomerInquiry.Dal.Models;
 using System.Collections.Generic;
 
 namespace CustomerInquiry.Logic.Interfaces
