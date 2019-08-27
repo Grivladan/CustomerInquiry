@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomerInquiry.Dal", "Cust
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomerInquiry.Logic", "CustomerInquiry.Logic\CustomerInquiry.Logic.csproj", "{06EDAA5D-E9AF-444D-B130-E6CEC70F6A82}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomerInquiry.Tests", "CustomerInquiry.Tests\CustomerInquiry.Tests.csproj", "{D26EDEAD-1EFC-45AD-ABAB-57DD5FAA4299}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{06EDAA5D-E9AF-444D-B130-E6CEC70F6A82}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{06EDAA5D-E9AF-444D-B130-E6CEC70F6A82}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{06EDAA5D-E9AF-444D-B130-E6CEC70F6A82}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D26EDEAD-1EFC-45AD-ABAB-57DD5FAA4299}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D26EDEAD-1EFC-45AD-ABAB-57DD5FAA4299}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D26EDEAD-1EFC-45AD-ABAB-57DD5FAA4299}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D26EDEAD-1EFC-45AD-ABAB-57DD5FAA4299}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

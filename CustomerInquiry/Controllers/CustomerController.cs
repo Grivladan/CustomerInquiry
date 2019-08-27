@@ -19,7 +19,7 @@ namespace CustomerInquiry.Api.Controllers
         }
         // GET api/values
         [HttpGet]
-        public ActionResult<IEnumerable<Customer>> GetCustomers(Inquiry inquiry)
+        public ActionResult<Customer> GetCustomers(Inquiry inquiry)
         {
             try
             {
@@ -28,14 +28,14 @@ namespace CustomerInquiry.Api.Controllers
                     return BadRequest("No inquiry criteria");
                 }
 
-                var customers = _customerService.GetCustomersInfo(inquiry.CustomerId, inquiry.Email);
+                var customer = _customerService.GetCustomerInfo(inquiry.CustomerId, inquiry.Email);
 
-                if (!customers.Any())
+                if (customer == null)
                 {
                     return NotFound();
                 }
 
-                return customers.ToList();
+                return Ok(customer);
             }
             catch (Exception)
             {

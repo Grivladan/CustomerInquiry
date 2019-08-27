@@ -8,7 +8,7 @@ namespace CustomerInquiry.Dal.Models
         public DateTime Date { get; set; }
         public decimal Amount { get; set; }
         public string CurrencyCode { get; set; }
-        public Status Staus { get; set; }
+        public Status Status { get; set; }
     }
 
     public enum Status
