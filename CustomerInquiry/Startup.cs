@@ -5,8 +5,11 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using CustomerInquiry.Dal;
+using CustomerInquiry.Dal.Models;
 using CustomerInquiry.Logic.Interfaces;
 using CustomerInquiry.Logic.Services;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -32,7 +35,10 @@ namespace CustomerInquiry
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2).AddFluentValidation();
+
+            services.AddTransient<IValidator<Customer>, CustomerValidator>();
+            services.AddTransient<IValidator<Transaction>, TransactionValidator>();
 
             services.AddDbContext<CustomerContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
@@ -43,10 +49,6 @@ namespace CustomerInquiry
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
-
-                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-                c.IncludeXmlComments(xmlPath);
             });
 
 

@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using CustomerInquiry.Api.ViewModels;
 using CustomerInquiry.Dal.Models;
 using CustomerInquiry.Logic.Interfaces;
@@ -19,17 +17,13 @@ namespace CustomerInquiry.Api.Controllers
             _customerService = customerService;
         }
 
-        /// <summary>
-        /// Get customer info by customer id or email
-        /// </summary>
-        /// <param name="inquiry"></param>  
         [HttpPost]
         [ProducesResponseType(typeof(Customer), (int)HttpStatusCode.OK)]
         public ActionResult<Customer> GetCustomers([FromBody] Inquiry inquiry)
         {
             try
             {
-                if (inquiry == null || (inquiry.CustomerId == null && string.IsNullOrEmpty(inquiry.Email)))
+                if (inquiry?.CustomerId == null && string.IsNullOrEmpty(inquiry?.Email))
                 {
                     return BadRequest("No inquiry criteria");
                 }

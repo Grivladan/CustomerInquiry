@@ -19,11 +19,6 @@ namespace CustomerInquiry.Dal
             return this.CustomerContext.Set<T>().AsNoTracking();
         }
 
-        public IQueryable<T> GetByCondition(Expression<Func<T, bool>> expression)
-        {
-            return this.CustomerContext.Set<T>().Where(expression).AsNoTracking();
-        }
-
         public void Create(T entity)
         {
             this.CustomerContext.Set<T>().Add(entity);

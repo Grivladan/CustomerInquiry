@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FluentValidation;
+using System;
 
 namespace CustomerInquiry.Dal.Models
 {
@@ -16,5 +17,13 @@ namespace CustomerInquiry.Dal.Models
         Success,
         Failed,
         Canceled
+    }
+
+    public class TransactionValidator : AbstractValidator<Transaction>
+    {
+        public TransactionValidator()
+        {
+            RuleFor(x => x.Amount).ScalePrecision(2, 10); 
+        }
     }
 }
