@@ -5,6 +5,7 @@ using CustomerInquiry.Api.ViewModels;
 using CustomerInquiry.Dal.Models;
 using CustomerInquiry.Logic.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 
 namespace CustomerInquiry.Api.Controllers
 {
@@ -17,9 +18,14 @@ namespace CustomerInquiry.Api.Controllers
         {
             _customerService = customerService;
         }
-        // GET api/values
-        [HttpGet]
-        public ActionResult<Customer> GetCustomers(Inquiry inquiry)
+
+        /// <summary>
+        /// Get customer info by customer id or email
+        /// </summary>
+        /// <param name="inquiry"></param>  
+        [HttpPost]
+        [ProducesResponseType(typeof(Customer), (int)HttpStatusCode.OK)]
+        public ActionResult<Customer> GetCustomers([FromBody] Inquiry inquiry)
         {
             try
             {

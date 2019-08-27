@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CustomerInquiry.Api</name>
+    </assembly>
+    <members>
+        <member name="M:CustomerInquiry.Api.Controllers.CustomerController.GetCustomers(CustomerInquiry.Api.ViewModels.Inquiry)">
+            <summary>
+            Get customer info by customer id or email
+            </summary>
+            <param name="inquiry"></param>  
+        </member>
+    </members>
+</doc>
